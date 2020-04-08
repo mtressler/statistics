@@ -1,6 +1,14 @@
 #!/usr/bin/env python3
 import sys
 import math
+import os
+
+
+def usage(exit_code=0):
+    progname = os.path.basename(sys.argv[0])
+    print(
+        f'usage: {progname} numGroups sizeGroup1 meanGroup1 sdGroup1 sizeGroup2 meanGroup2 sdGroup2 ...')
+    sys.exit(exit_code)
 
 
 def xBar(size, mean, totalSize):
@@ -53,6 +61,9 @@ def fStat(mstr, mse):
 
 
 def main():
+
+    if (sys.argv[1] == "-h"):
+        usage(0)
 
     numTreat = int(sys.argv[1])
     arguments = sys.argv[2:]
