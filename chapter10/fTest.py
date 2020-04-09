@@ -66,7 +66,6 @@ def main():
         usage(0)
 
     numTreat = int(sys.argv[1])
-    arguments = sys.argv[2:]
     size = []
     mean = []
     SD = []
@@ -97,6 +96,11 @@ def main():
 
     testStat = fStat(msTreat, msError)
 
+    print(f'dF: treatments: {numTreat-1}, error: {n-numTreat}')
+    print(
+        f'Sum Squares: SSTr: {treatSS:.4f}, SSE: {errorSS:.4f}, total: {totalSS:.4f}')
+    print(f'Mean Square: MSTr: {msTreat:.4f}, MSE: {msError:.4f}')
+    print(f'Test Stat: F: {testStat:.4f}')
     print(f'Fcdf({testStat:.4f},E99,{numTreat-1},{n-numTreat})')
 
 # Main Execution
