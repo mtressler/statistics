@@ -1,6 +1,14 @@
 #!/usr/bin/env python3
 import sys
 import math
+import os
+
+
+def usage(exit_code=0):
+    progname = os.path.basename(sys.argv[0])
+    print(
+        f'usage: {progname} successX totalX successY totalY ...')
+    sys.exit(exit_code)
 
 
 def twoPopPropTest(x, y, m, n):
@@ -14,6 +22,9 @@ def twoPopPropTest(x, y, m, n):
 
 
 def main():
+
+    if (sys.argv[1] == "-h"):
+        usage(0)
 
     x = float(sys.argv[1])
     y = float(sys.argv[2])

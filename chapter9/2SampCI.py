@@ -1,6 +1,14 @@
 #!/usr/bin/env python3
 import sys
 import math
+import os
+
+
+def usage(exit_code=0):
+    progname = os.path.basename(sys.argv[0])
+    print(
+        f'usage: {progname} meanX1 meanX2 (stdDev/stdErr)X1 (stdDev/stdErr)X2 sizeX1 sizeX2 ...')
+    sys.exit(exit_code)
 
 
 def findCISD(x1, x2, s1, s2, m, n, critVal):
@@ -42,6 +50,9 @@ def findDF(s1, s2, m, n):
 
 
 def main():
+
+    if (sys.argv[1] == "-h"):
+        usage(0)
 
     x1 = float(sys.argv[1])
     x2 = float(sys.argv[2])
