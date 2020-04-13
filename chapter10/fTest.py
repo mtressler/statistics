@@ -96,6 +96,7 @@ def main():
 
     testStat = fStat(msTreat, msError)
 
+    print(f'Sample Mean: {sampMean:.4f}')
     print(f'dF: treatments: {numTreat-1}, error: {n-numTreat}')
     print(
         f'Sum Squares: SSTr: {treatSS:.4f}, SSE: {errorSS:.4f}, total: {totalSS:.4f}')
