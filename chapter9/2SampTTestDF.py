@@ -1,6 +1,14 @@
 #!/usr/bin/env python3
 import sys
 import math
+import os
+
+
+def usage(exit_code=0):
+    progname = os.path.basename(sys.argv[0])
+    print(
+        f'usage: {progname} meanX1 meanX2 mu (stdDev or stdErr)X1 (stdDev or stdErr)X2 sizeX1 sizeX2 ...')
+    sys.exit(exit_code)
 
 
 def twoSampTTestSD(x1, x2, mu, s1, s2, m, n):
@@ -29,6 +37,9 @@ def findDF(s1, s2, m, n):
 
 def main():
 
+    if (sys.argv[1] == "-h"):
+        usage(0)
+
     x1 = float(sys.argv[1])
     x2 = float(sys.argv[2])
     mu = float(sys.argv[3])
@@ -46,7 +57,7 @@ def main():
         print("Test Statistic: ", round(
             twoSampTTestSE(x1, x2, mu, s1, s2), 4))
 
-    print("Degrees of Freedom: ", findDF(s1, s2, m, n))
+    print("Degrees of Freedom (If needed): ", findDF(s1, s2, m, n))
 
 # Main Execution
 
