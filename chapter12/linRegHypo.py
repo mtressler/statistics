@@ -27,20 +27,16 @@ def findB1(sxy, sxx):
     return sxy/sxx
 
 
-def findB0(yBar, b1, xBar):
-    return yBar - b1*xBar
-
-
 def findSSE(syy, b1, sxy):
     return syy-(b1*sxy)
 
 
-def findRSq(sse, sst):
-    return (1 - (sse/sst))
-
-
 def findEstStd(sse, sxx, n):
     return (math.sqrt(abs(sse/(n-2))))/math.sqrt(abs(sxx))
+
+
+def findTestStat(b1, eSTD):
+    return b1/eSTD
 
 
 def main():
@@ -60,24 +56,15 @@ def main():
     sxy = findSXY(xy, xi, yi, n)
 
     b1 = findB1(sxy, sxx)
-    b0 = findB0(yi/n, b1, xi/n)
 
     sse = findSSE(syy, b1, sxy)
 
-    rSQ = findRSq(sse, syy)
-
     eSTD = findEstStd(sse, sxx, n)
 
-    print(f'Sxx = {sxx:.4f}')
-    print(f'Syy = {syy:.4f}')
-    print(f'Sxy = {sxy:.4f}')
-    print('\n')
-    print(f'yHat = {b0:.4f} + {b1:.4f}x')
-    print(f'SSE = {sse:.4f}')
-    print(f'R = {math.sqrt(rSQ):.4f}')
-    print(f'R Squared = {rSQ:.4f}')
-    print('\n')
-    print(f'estimated standard deviation = {eSTD:.4f}')
+    tStat = findTestStat(b1, eSTD)
+
+    print(f'Test Statistic: {tStat:.4f}')
+    print(f'Degrees of Freedom: {n-2}')
 
 
 # Main Execution
